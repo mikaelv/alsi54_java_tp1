@@ -22,12 +22,15 @@ public class JeuMain {
                 case "d" -> plateau.deplacerJoueur(0, +1);
                 case "q" -> quitter = true;
             }
+            if (plateau.detecterCollision()) {
+                quitter = true;
+            }
             plateau.deplacerEnnemis();
             if (plateau.detecterCollision()) {
-                System.out.println("GAME OVER !");
                 quitter = true;
             }
             plateau.afficher();
         }
+        System.out.println("GAME OVER !");
     }
 }

@@ -13,8 +13,8 @@ public class Plateau {
         grille = new char[hauteur][largeur];
         joueur = new Personnage(hauteur / 2, largeur / 2, '@');
         ennemis = new Personnage[]{
-                new Personnage(0, 0, (char) 0x03A8),
-                new Personnage(hauteur - 1, largeur - 1, (char) 0x03A9)
+                new Personnage(0, 0, 'X'),
+                new Personnage(hauteur - 1, largeur - 1, 'Y')
         };
         initialiser();
     }
@@ -25,13 +25,13 @@ public class Plateau {
                 grille[i][j] = '.';
             }
         }
-        afficherPersonnage(joueur);
+        placerPersonnage(joueur);
         for (int i = 0; i < ennemis.length; i++) {
-            afficherPersonnage(ennemis[i]);
+            placerPersonnage(ennemis[i]);
         }
     }
 
-    private void afficherPersonnage(Personnage personnage) {
+    private void placerPersonnage(Personnage personnage) {
         grille[personnage.getLigne()][personnage.getColonne()] = personnage.getSymbole();
     }
 
@@ -58,7 +58,7 @@ public class Plateau {
         if (nouveauL >= 0 && nouveauL < hauteur && nouveauC >= 0 && nouveauC < largeur) {
             grille[ligne][colonne] = '.';
             personnage.deplacer(dligne, dcolonne);
-            afficherPersonnage(personnage);
+            placerPersonnage(personnage);
         }
     }
 
